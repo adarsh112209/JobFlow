@@ -10,7 +10,9 @@ connectDB();
 const app = express();
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: 'https://job-flow-in.vercel.app'
+}));
 
 // API Routes
 app.use('/api/auth', require('./routes/authRoutes'));
