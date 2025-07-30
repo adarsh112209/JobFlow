@@ -322,7 +322,7 @@ body {
 .navbar-left {
   display: flex;
   align-items: center;
-  gap: 1.5rem; /* This creates space between the brand and the buttons */
+  gap: 1.5rem; /* Creates space between the brand and the buttons */
 }
 
 .navbar-right {
@@ -344,6 +344,7 @@ body {
     font-size: 0.85rem;
     width: auto; /* Allow buttons to size to their content */
 }
+
 /* Make navbar buttons slightly smaller to fit better */
 .navbar-actions .btn, .navbar-actions .btn-secondary {
     padding: 0.5rem 1rem;
