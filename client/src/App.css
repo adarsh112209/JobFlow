@@ -1,0 +1,719 @@
+/* ===== FINAL CELESTIAL DARK THEME ===== */
+
+/* -- 1. Color Palette & Variables -- */
+:root {
+  --primary-color: #3B82F6; /* Celestial Blue */
+  --secondary-color: #8B5CF6; /* Regal Purple */
+  --background-color: #0D1117; /* GitHub Dark Base */
+  --surface-color: #161B22; /* Lighter Dark Gray */
+  --text-color: #E6EDF3; /* Soft Off-White */
+  --text-secondary-color: #8B949E; /* Muted Gray */
+  --border-color: rgba(139, 148, 158, 0.2);
+  --font-family: 'Inter', sans-serif;
+}
+
+/* -- 2. Global Styles -- */
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+.app {
+  position: relative;
+  z-index: 1;
+  overflow-y: auto;
+  height: 100vh;
+}
+
+/* -- 3. Animated Background -- */
+.aurora-background {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0;
+}
+.aurora-shape {
+  position: absolute; border-radius: 50%; filter: blur(120px); opacity: 0.7;
+}
+.aurora-shape1 {
+  width: 400px; height: 400px; background: var(--primary-color); top: -150px; left: -150px;
+  animation: move1 20s infinite alternate;
+}
+.aurora-shape2 {
+  width: 500px; height: 500px; background: var(--secondary-color); bottom: -200px; right: -200px;
+  animation: move2 25s infinite alternate;
+}
+@keyframes move1 {
+  from { transform: translate(0, 0) rotate(0deg); }
+  to { transform: translate(200px, 400px) rotate(180deg); }
+}
+@keyframes move2 {
+  from { transform: translate(0, 0) rotate(0deg); }
+  to { transform: translate(-300px, -400px) rotate(-180deg); }
+}
+
+/* -- 4. Auth Page & Form Styling -- */
+.auth-page-container { min-height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; z-index: 2; padding: 1rem; }
+.auth-form-wrapper { background: rgba(22, 27, 34, 0.7); backdrop-filter: blur(15px); border: 1px solid var(--border-color); padding: 3rem; border-radius: 12px; width: 100%; max-width: 420px; text-align: center; }
+.auth-form-wrapper .logo-container { display: flex; justify-content: center; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem; }
+.auth-form-wrapper .logo-container h1 { margin: 0; font-size: 1.75rem; font-weight: 600; color: var(--text-color); }
+.form-container { text-align: left; }
+.form-container h2 { text-align: center; margin-bottom: 2rem; font-weight: 500; color: var(--text-secondary-color); }
+.form-group { margin-bottom: 1.25rem; }
+.form-group label { display: block; margin-bottom: 0.5rem; color: var(--text-secondary-color); font-size: 0.9rem; }
+.form-group input, .application-form select, .application-form textarea {
+  width: 100%; padding: 0.8rem 1rem; border: 1px solid var(--border-color); background-color: #0D1117;
+  border-radius: 6px; color: var(--text-color); font-size: 1rem; box-sizing: border-box; transition: all 0.2s ease-in-out;
+}
+.form-group input:focus, .application-form select:focus, .application-form textarea:focus { outline: none; border-color: var(--primary-color); box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3); }
+.btn {
+  display: inline-block; /* Ensures <a> tags behave like buttons */
+  padding: 0.8rem 1.2rem;
+  border: none;
+  background-image: linear-gradient(90deg, var(--secondary-color), var(--primary-color));
+  background-size: 200%;
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  text-decoration: none; /* Removes underline from <a> tag */
+  text-align: center;
+  transition: all 0.4s ease;
+}
+.btn:hover { background-position: 100%; transform: translateY(-2px); }
+.form-link { text-align: center; margin-top: 1.5rem; font-size: 0.9rem; color: var(--text-secondary-color); }
+.form-link a { color: var(--primary-color); text-decoration: none; font-weight: 500; }
+.form-link a:hover { text-decoration: underline; }
+
+/* -- 5. Dashboard & Navbar Styling -- */
+.navbar { background: rgba(13, 17, 23, 0.7); backdrop-filter: blur(15px); border-bottom: 1px solid var(--border-color); position: fixed; width: 100%; top: 0; left: 0; box-sizing: border-box; z-index: 100; padding: 0.75rem 2rem; display: flex; justify-content: space-between; align-items: center; }
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-color);
+  text-decoration: none; /* Removes underline from link */
+  transition: color 0.2s ease-in-out;
+}
+
+.navbar-brand:hover {
+  color: var(--primary-color);
+}
+.navbar-user {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem; /* Adjusted gap */
+  color: var(--text-secondary-color);
+}
+
+.navbar-user strong {
+    color: var(--text-color);
+    font-weight: 600; /* Bolder font */
+}
+
+.user-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--surface-color);
+  border: 1px solid var(--border-color);
+}
+.btn-logout { padding: 0.5rem 1rem; border: 1px solid var(--primary-color); background-color: transparent; color: var(--primary-color); border-radius: 6px; cursor: pointer; font-weight: 500; transition: all 0.2s ease-in-out; }
+.btn-logout:hover { background-color: var(--primary-color); color: var(--background-color); }
+.dashboard-content { position: relative; z-index: 2; padding-top: 80px; }
+.dashboard-header h2 { font-weight: 600; font-size: 2rem; margin: 0; }
+
+/* -- 6. Kanban Board Styling -- */
+/* --- UPDATED KANBAN STYLES FOR GRID LAYOUT --- */
+.kanban-grid-container {
+  display: flex;
+  flex-direction: column; /* Stacks the rows vertically */
+  gap: 1.5rem;
+  padding: 0 2rem 2rem 2rem;
+}
+
+.kanban-row {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: flex-start; /* This is the line that fixes the issue */
+}
+.kanban-column { flex: 1 0 300px; max-width: 320px; background: rgba(22, 27, 34, 0.7); backdrop-filter: blur(10px); border-radius: 8px; padding: 0.5rem 1rem 1rem 1rem; border: 1px solid var(--border-color); }
+.kanban-column h3 { text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.5px; color: var(--text-secondary-color); }
+.kanban-column-body { min-height: 100px; }
+.kanban-card { background-color: var(--background-color); border-left: 4px solid var(--primary-color); border-radius: 6px; padding: 1rem; margin-bottom: 0.75rem; cursor: grab; text-align: left; box-shadow: 0 4px 15px rgba(0,0,0,0.2); transition: all 0.2s ease-in-out; }
+.kanban-card:hover { transform: translateY(-4px); box-shadow: 0 8px 25px rgba(0,0,0,0.3); border-left-color: var(--secondary-color); }
+.kanban-card h4 { margin: 0 0 0.25rem 0; font-weight: 600; color: var(--text-color); }
+.kanban-card p {
+  margin: 0;
+  font-size: 0.85rem; /* Reduced from 0.9rem */
+  color: var(--text-secondary-color);
+  line-height: 1.4; /* Added for better spacing */
+}
+.card-dates { margin-top: 1rem; border-top: 1px solid var(--border-color); padding-top: 0.75rem; }
+.card-date { margin: 0 0 0.25rem 0; font-size: 0.8rem; }
+.card-date strong { color: var(--text-color); }
+
+/* -- 7. Modal Styling -- */
+.modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.8); display: flex; justify-content: center; align-items: center; z-index: 1000; }
+.modal-content { background: var(--surface-color); border: 1px solid var(--border-color); box-shadow: 0 0 50px rgba(0,0,0,0.5); backdrop-filter: blur(20px); padding: 2.5rem; border-radius: 12px; position: relative; width: 90%; max-width: 500px; }
+.modal-content h2 { text-align: center; margin-top: 0; margin-bottom: 2rem; }
+.modal-close { position: absolute; top: 15px; right: 20px; background: none; border: none; color: var(--text-secondary-color); font-size: 1.75rem; cursor: pointer; transition: color 0.3s ease; }
+.modal-close:hover { color: var(--text-color); }
+.application-form .form-actions { display: flex; justify-content: flex-end; gap: 1rem; margin-top: 2rem; }
+.application-form textarea { min-height: 100px; resize: vertical; }
+.btn-delete {
+  background-color: transparent;
+  border: 1px solid #E53E3E; /* Red border */
+  color: #E53E3E;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  margin-top: 1.5rem;
+  float: left;
+  transition: all 0.2s ease-in-out;
+}
+.btn-delete:hover {
+  background-color: #E53E3E; /* Red fill on hover */
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* -- Profile Dropdown Styling -- */
+.profile-dropdown {
+  position: relative;
+}
+
+.profile-trigger {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: none;
+  border: none;
+  color: var(--text-secondary-color);
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  transition: background-color 0.2s;
+}
+
+.profile-trigger:hover {
+  background-color: var(--surface-color);
+}
+
+.profile-trigger span {
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 120%;
+  right: 0;
+  background-color: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  width: 200px;
+  z-index: 101;
+  overflow: hidden;
+}
+
+.dropdown-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0.5rem 0;
+}
+
+.dropdown-menu li a,
+.dropdown-menu li button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 0.75rem 1.5rem;
+  color: var(--text-color);
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-family: var(--font-family);
+}
+
+.dropdown-menu li a:hover,
+.dropdown-menu li button:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.dropdown-menu .divider {
+  height: 1px;
+  margin: 0.5rem 0;
+  background-color: var(--border-color);
+}
+
+.forgot-password-link {
+  text-align: right;
+  font-size: 0.9rem;
+  margin-top: 0.75rem;
+}
+.forgot-password-link a {
+  color: var(--text-secondary-color);
+  text-decoration: none;
+}
+.forgot-password-link a:hover {
+  color: var(--primary-color);
+  text-decoration: underline;
+}
+
+.form-message {
+  text-align: center;
+  margin-top: 1rem;
+  color: var(--primary-color);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.25rem;
+}
+
+.card-time {
+  font-size: 0.75rem;
+  color: var(--text-secondary-color);
+  margin: 0;
+  white-space: nowrap; /* Prevents the time from wrapping */
+  margin-left: 0.5rem;
+}
+
+.kanban-card h4 {
+  margin: 0;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.home-icon-link {
+  display: flex;
+  align-items: center;
+  color: var(--text-secondary-color);
+  transition: color 0.2s ease-in-out;
+}
+
+.home-icon-link:hover {
+  color: var(--primary-color);
+}
+
+.home-icon-link:hover {
+  color: var(--primary-color);
+}
+
+/* -- Navbar Layout -- */
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem; /* This creates space between the brand and the buttons */
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Make navbar buttons slightly smaller to fit better */
+.navbar-actions .btn, .navbar-actions .btn-secondary,
+.navbar-right .btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+    width: auto; /* Allow buttons to size to their content */
+}
+/* Make navbar buttons slightly smaller to fit better */
+.navbar-actions .btn, .navbar-actions .btn-secondary {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+    width: auto; /* Allow buttons to size to their content */
+}
+
+/* Make navbar buttons slightly smaller to fit better */
+.navbar-actions .btn, .navbar-actions .btn-secondary {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+    width: auto; /* Allow buttons to size to their content */
+}
+
+
+
+/* -- Custom Scrollbar Styling -- */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--surface-color);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--primary-color);
+  border-radius: 10px;
+  border: 3px solid var(--surface-color);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--secondary-color);
+}
+
+/* -- 9. Custom Datepicker & Select Styling -- */
+
+/* Import Base Styles */
+@import 'react-datepicker/dist/react-datepicker.css';
+
+/* Custom Datepicker Input */
+.react-datepicker-wrapper input {
+  width: 100%; padding: 0.8rem 1rem; border: 1px solid var(--border-color); background-color: #0D1117;
+  border-radius: 6px; color: var(--text-color); font-size: 1rem; box-sizing: border-box; transition: all 0.2s ease-in-out;
+  font-family: var(--font-family);
+}
+.react-datepicker-wrapper input:focus {
+  outline: none; border-color: var(--primary-color); box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+}
+
+/* Custom Datepicker Calendar Popup */
+.react-datepicker {
+  background-color: var(--surface-color) !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 8px !important;
+  font-family: var(--font-family) !important;
+}
+.react-datepicker__header {
+  background-color: var(--background-color) !important;
+  border-bottom: 1px solid var(--border-color) !important;
+}
+.react-datepicker__current-month, .react-datepicker-time__header, .react-datepicker-year-header {
+  color: var(--text-color) !important;
+}
+.react-datepicker__day-name, .react-datepicker__day, .react-datepicker__time-name {
+  color: var(--text-secondary-color) !important;
+}
+.react-datepicker__day:hover {
+  background-color: var(--primary-color) !important;
+  color: white !important;
+}
+.react-datepicker__day--selected {
+  background-color: var(--secondary-color) !important;
+  color: white !important;
+}
+.react-datepicker__navigation-icon::before {
+  border-color: var(--text-color) !important;
+}
+
+/* Custom React-Select Dropdown */
+.react-select-container .react-select__control {
+  background-color: #0D1117;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  min-height: 45px;
+}
+.react-select-container .react-select__control--is-focused {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+}
+.react-select-container .react-select__menu {
+  background-color: var(--surface-color);
+  border: 1px solid var(--border-color);
+}
+.react-select-container .react-select__option {
+  background-color: transparent;
+}
+.react-select-container .react-select__option--is-focused {
+  background-color: var(--primary-color);
+  color: white;
+}
+.react-select-container .react-select__option--is-selected {
+  background-color: var(--secondary-color);
+  color: white;
+}
+.react-select-container .react-select__single-value,
+.react-select-container .react-select__input-container {
+  color: var(--text-color);
+}
+
+/* -- Custom Datepicker Icon -- */
+.react-datepicker__input-container {
+  position: relative; /* This is needed for the icon's positioning */
+}
+
+.react-datepicker__calendar-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 0;
+  width: 16px;
+  height: 16px;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23E6EDF3' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3crect x='3' y='4' width='18' height='18' rx='2' ry='2'%3e%3c/rect%3e%3cline x1='16' y1='2' x2='16' y2='6'%3e%3c/line%3e%3cline x1='8' y1='2' x2='8' y2='6'%3e%3c/line%3e%3cline x1='3' y1='10' x2='21' y2='10'%3e%3c/line%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.custom-date-input svg {
+  stroke: var(--text-color); /* Changed to the main text color (white) */
+}
+
+/* -- Custom Date Input Button -- */
+.custom-date-input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--border-color);
+  background-color: #0D1117;
+  border-radius: 6px;
+  color: var(--text-color);
+  font-size: 1rem;
+  box-sizing: border-box;
+  transition: all 0.2s ease-in-out;
+  font-family: var(--font-family);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+.custom-date-input:hover {
+  border-color: var(--primary-color);
+}
+.custom-date-input .placeholder {
+  color: var(--text-secondary-color);
+}
+.custom-date-input svg {
+  stroke: var(--text-color);
+}
+
+/* -- Footer Styling -- */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* This ensures the container takes up at least the full screen height */
+}
+
+.content-wrap {
+  flex: 1;
+}
+
+.footer {
+  position: relative;
+  z-index: 2;
+  padding: 1rem;
+  background-color: var(--background-color);
+  border-top: 1px solid var(--border-color);
+  text-align: center;
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.social-links a {
+  color: var(--text-secondary-color);
+  transition: color 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.social-links a:hover {
+  color: var(--primary-color);
+  transform: translateY(-3px);
+}
+
+.copyright-text {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--text-secondary-color);
+}
+
+.password-criteria {
+  font-size: 0.8rem;
+  color: var(--text-secondary-color);
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+}
+
+/* -- Confirmation Modal Styling -- */
+.confirmation-modal {
+  text-align: center;
+  padding: 1rem;
+}
+
+.confirmation-modal p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.confirmation-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.confirmation-actions .btn,
+.confirmation-actions .btn-secondary {
+  width: 120px; /* Give buttons a fixed width */
+}
+
+.btn-delete-confirm {
+  width: 120px;
+  padding: 0.8rem 1.2rem;
+  border: none;
+  background-color: #E53E3E; /* Red for confirmation */
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-delete-confirm:hover {
+  background-color: #C53030;
+  transform: translateY(-2px);
+}
+
+/* -- View Mail Button & Modal Styling -- */
+.kanban-card {
+  display: flex;
+  flex-direction: column;
+}
+.card-content {
+  flex-grow: 1;
+}
+.card-footer {
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border-color);
+  text-align: right;
+}
+.btn-view-mail {
+  background: none;
+  border: none;
+  color: var(--primary-color);
+  font-weight: 500;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+.btn-view-mail:hover {
+  text-decoration: underline;
+}
+.email-view-container {
+  max-height: 70vh;
+  overflow-y: auto;
+  padding-right: 1rem; /* Space for scrollbar */
+}
+
+/* -- Landing Page Styling -- */
+.landing-page-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  padding: 2rem;
+  background-image: linear-gradient(rgba(13, 17, 23, 0.8), rgba(13, 17, 23, 0.8)), url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center;
+}
+
+.landing-content {
+  max-width: 600px;
+}
+
+.landing-content .logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.landing-content .logo-container h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+.tagline {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--text-color);
+  margin-bottom: 1rem;
+}
+
+.description {
+  font-size: 1.1rem;
+  color: var(--text-secondary-color);
+  margin-bottom: 2.5rem;
+  line-height: 1.6;
+}
+
+.landing-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.landing-actions .btn {
+  min-width: 150px;
+}
+
+.btn-danger {
+  background-image: none;
+  background-color: #E53E3E; /* Red color */
+}
+.btn-danger:hover {
+  background-color: #C53030; /* Darker red on hover */
+}
+
+/* -- Custom Phone Input Styling -- */
+.react-tel-input .form-control {
+  width: 100% !important;
+  height: 45px !important;
+  background-color: #0D1117 !important;
+  color: var(--text-color) !important;
+  border: 1px solid var(--border-color) !important;
+}
+.react-tel-input .flag-dropdown {
+  background-color: #0D1117 !important;
+  border: 1px solid var(--border-color) !important;
+}
+.react-tel-input .country-list {
+  background-color: var(--surface-color) !important;
+}
+.react-tel-input .country-list .country:hover {
+  background-color: var(--primary-color) !important;
+}
+
+
+
+
+
+
+
