@@ -2,20 +2,31 @@ const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 const nodemailer = require('nodemailer');
 
-// --- NEW VALIDATION HELPER FUNCTION ---
+// --- VALIDATION HELPER FUNCTION ---
 const validatePassword = (password) => {
   const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,15}$/;
   return passwordRegex.test(password);
 };
 
-const generateToken = (id) => {
-  return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: '30d' });
+// --- TOKEN GENERATION ---
+const generateToken = (user) => {
+  return jwt.sign(
+    { 
+      id: user._id, 
+      name: `${user.firstName} ${user.lastName}`,
+      isGmailConnected: !!user.googleRefreshToken 
+    }, 
+    process.env.JWT_SECRET, 
+    { expiresIn: '30d' }
+  );
 };
+
+// --- ROUTE HANDLERS ---
 
 const registerUser = async (req, res) => {
   const { firstName, lastName, dob, phone, nationality, email, password } = req.body;
-
-  // --- ADDED VALIDATION CHECK ---
+  
+  // Validation Check
   if (!validatePassword(password)) {
     return res.status(400).json({ 
       message: 'Password must be 6-15 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character.' 
@@ -28,10 +39,11 @@ const registerUser = async (req, res) => {
       return res.status(400).json({ message: 'User already exists' });
     }
     const user = await User.create({ firstName, lastName, dob, phone, nationality, email, password });
+    
     res.status(201).json({
       _id: user._id,
       name: `${user.firstName} ${user.lastName}`,
-      token: generateToken(user._id),
+      token: generateToken(user),
     });
   } catch (error) {
     console.error('Registration Error:', error);
@@ -47,7 +59,7 @@ const loginUser = async (req, res) => {
       res.json({
         _id: user._id,
         name: `${user.firstName} ${user.lastName}`,
-        token: generateToken(user._id),
+        token: generateToken(user),
       });
     } else {
       res.status(401).json({ message: 'Invalid email or password' });
@@ -61,11 +73,12 @@ const forgotPassword = async (req, res) => {
   try {
     const user = await User.findOne({ email: req.body.email });
     if (!user) {
-      return res.status(404).json({ message: 'User not found' });
+      return res.status(404).json({ message: 'User not found with that email' });
     }
+
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
     user.otp = otp;
-    user.otpExpire = Date.now() + 10 * 60 * 1000;
+    user.otpExpire = Date.now() + 10 * 60 * 1000; // 10 minutes
     await user.save({ validateBeforeSave: false });
 
     const transporter = nodemailer.createTransport({
@@ -79,22 +92,22 @@ const forgotPassword = async (req, res) => {
     const mailOptions = {
       from: process.env.EMAIL_USER,
       to: user.email,
-      subject: 'Your Password Reset OTP',
+      subject: 'Your Password Reset OTP for Job Companion',
       text: `Your OTP for password reset is: ${otp}. It is valid for 10 minutes.`,
     };
 
     await transporter.sendMail(mailOptions);
-    res.status(200).json({ success: true, message: `OTP has been sent to your email.` });
+    res.status(200).json({ success: true, message: `An OTP has been sent to your email.` });
+
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Server Error' });
+    console.error('Forgot Password Error:', error);
+    res.status(500).json({ message: 'Error sending email' });
   }
 };
 
 const resetPasswordWithOtp = async (req, res) => {
   const { email, otp, password } = req.body;
-
-  // --- ADDED VALIDATION CHECK ---
+  
   if (!validatePassword(password)) {
     return res.status(400).json({ 
       message: 'Password must meet the criteria: 6-15 characters, one uppercase, one lowercase, one number, one special character.' 
@@ -110,6 +123,7 @@ const resetPasswordWithOtp = async (req, res) => {
     if (!user) {
       return res.status(400).json({ message: 'Invalid OTP or OTP has expired' });
     }
+
     user.password = password;
     user.otp = undefined;
     user.otpExpire = undefined;

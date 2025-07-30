@@ -8,10 +8,16 @@ const oauth2Client = new google.auth.OAuth2(
   'http://localhost:5000/api/auth/google/callback'
 );
 
-const generateToken = (id) => {
-    return jwt.sign({ id }, process.env.JWT_SECRET, {
-      expiresIn: '30d',
-    });
+const generateToken = (user) => {
+    return jwt.sign(
+        { 
+            id: user._id, 
+            name: user.name,
+            isGmailConnected: !!user.googleRefreshToken
+        }, 
+        process.env.JWT_SECRET, 
+        { expiresIn: '30d' }
+    );
 };
 
 const redirectToGoogle = (req, res) => {
@@ -52,7 +58,7 @@ const handleGoogleCallback = async (req, res) => {
         { upsert: true, new: true, setDefaultsOnInsert: true }
     );
 
-    const appToken = generateToken(user._id);
+    const appToken = generateToken(user);
 
     // Redirect user back to the frontend with our app's token
     // We redirect to a dedicated callback page now
