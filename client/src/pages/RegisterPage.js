@@ -47,7 +47,7 @@ const RegisterPage = () => {
   return (
     <div className="auth-page-container">
       <div className="auth-form-wrapper">
-        <div className="logo-container"> <Logo /> <h1>Job Companion</h1> </div>
+        <div className="logo-container"> <Logo /> <h1>JobFlow</h1> </div>
         <div className="form-container">
           <h2>Create Your Account</h2>
           <form onSubmit={submitHandler}>

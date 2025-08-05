@@ -24,7 +24,7 @@
       return (
         <nav className="navbar">
           <div className="navbar-left">
-            <Link to="/" className="navbar-brand"> <Logo /> <span>Job Flow</span> </Link>
+            <Link to="/" className="navbar-brand"> <Logo /> <span>JobFlow</span> </Link>
           </div>
           <div className="navbar-center">
             {userInfo && (
