@@ -2,8 +2,8 @@ import React, { useState, useEffect, useContext } from 'react';
 import API from '../api';
 import { toast } from 'react-toastify';
 import DatePicker from 'react-datepicker';
-import PhoneInput from 'react-phone-input-2'; // Import the new component
-import 'react-phone-input-2/lib/style.css'; // Import the component's CSS
+import PhoneInput from 'react-phone-input-2'; 
+import 'react-phone-input-2/lib/style.css'; 
 import AuthContext from '../context/AuthContext';
 import Navbar from '../components/Navbar';
 import CountrySelector from '../components/CountrySelector';

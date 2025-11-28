@@ -6,7 +6,7 @@ const { redirectToGoogle, handleGoogleCallback } = require('../controllers/googl
 router.post('/register', registerUser);
 router.post('/login', loginUser);
 router.post('/forgotpassword', forgotPassword);
-router.put('/resetpassword-otp', resetPasswordWithOtp); // Updated route
+router.put('/resetpassword-otp', resetPasswordWithOtp); 
 
 router.get('/google', redirectToGoogle);
 router.get('/google/callback', handleGoogleCallback);

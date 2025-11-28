@@ -14,17 +14,15 @@ const GoogleCallbackPage = () => {
 
     if (token) {
       const decoded = jwtDecode(token);
-      // In a real app, you'd fetch the user data from a /me endpoint
-      // But for this project, we can create a placeholder userInfo object
+
       const userData = {
         token,
         _id: decoded.id,
-        // name and email are not in this token, but AuthContext can handle it
       };
       login(userData);
-      navigate('/', { replace: true }); // Redirect to the main dashboard
+      navigate('/', { replace: true });
     } else {
-      navigate('/login', { replace: true }); // Redirect to login if no token
+      navigate('/login', { replace: true }); 
     }
   }, [location, login, navigate]);
 

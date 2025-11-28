@@ -6,7 +6,6 @@ import AuthContext from '../context/AuthContext';
 import Logo from '../components/Logo';
 
 const LoginPage = () => {
-  // ... (logic remains the same)
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { login } = useContext(AuthContext);

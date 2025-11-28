@@ -8,7 +8,6 @@ const {
 } = require('../controllers/applicationController');
 const { protect } = require('../middleware/authMiddleware');
 
-// All these routes are protected by the 'protect' middleware
 router.route('/')
     .get(protect, getApplications)
     .post(protect, createApplication);

@@ -5,7 +5,7 @@ const crypto = require('crypto');
 const userSchema = mongoose.Schema({
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
-  dob: { type: Date }, // New field for Date of Birth
+  dob: { type: Date }, 
   phone: { type: String },
   nationality: { type: String },
   email: { type: String, required: true, unique: true },
@@ -15,12 +15,11 @@ const userSchema = mongoose.Schema({
   googleRefreshToken: { type: String },
   otp: String,
   otpExpire: Date,
-  settings: { // New object for user settings
+  settings: { 
     theme: { type: String, default: 'dark' }
   }
 }, { timestamps: true });
 
-// --- The rest of the file remains the same ---
 userSchema.pre('save', async function (next) {
   if (!this.isModified('password') || !this.password) {
     return next();

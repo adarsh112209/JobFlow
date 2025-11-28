@@ -1,6 +1,5 @@
 const User = require('../models/User');
 
-// --- NEW VALIDATION HELPER FUNCTION ---
 const validatePassword = (password) => {
   const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,15}$/;
   return passwordRegex.test(password);

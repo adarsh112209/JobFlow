@@ -6,10 +6,7 @@
     const KanbanBoard = ({ applications, onCardClick, refreshApplications }) => {
       const { userInfo } = useContext(AuthContext);
 
-      // --- THIS IS THE FIX ---
-      // Add a check to ensure 'applications' is an array before trying to use .filter on it
       if (!Array.isArray(applications)) {
-        // You can return a loading indicator or null while data is being fetched or if it's invalid
         return <div>Loading applications...</div>;
       }
 

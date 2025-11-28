@@ -8,8 +8,6 @@ const getApplications = async (req, res) => {
   res.json(applications);
 };
 
-// @desc    Create a new application
-// @route   POST /api/applications
 const createApplication = async (req, res) => {
   const { companyName, role, status, notes } = req.body;
   const application = new Application({
@@ -23,8 +21,6 @@ const createApplication = async (req, res) => {
   res.status(201).json(createdApplication);
 };
 
-// @desc    Update an application
-// @route   PUT /api/applications/:id
 const updateApplication = async (req, res) => {
     const { companyName, role, status, notes } = req.body;
     const application = await Application.findById(req.params.id);
@@ -42,8 +38,6 @@ const updateApplication = async (req, res) => {
     }
 };
 
-// @desc    Delete an application
-// @route   DELETE /api/applications/:id
 const deleteApplication = async (req, res) => {
     const application = await Application.findById(req.params.id);
 

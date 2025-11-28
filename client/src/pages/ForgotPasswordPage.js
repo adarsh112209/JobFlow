@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useNavigate } from 'react-router-dom'; 
 import API from '../api';
 import Logo from '../components/Logo';
 
@@ -9,7 +9,7 @@ const ForgotPasswordPage = () => {
   const [password, setPassword] = useState('');
   const [stage, setStage] = useState(1);
   const [message, setMessage] = useState('');
-  const navigate = useNavigate(); // Initialize useNavigate
+  const navigate = useNavigate();
 
   const handleRequestOtp = async (e) => {
     e.preventDefault();
@@ -30,7 +30,6 @@ const ForgotPasswordPage = () => {
       const { data } = await API.put('/api/auth/resetpassword-otp', { email, otp, password });
       setMessage(data.message + ". Redirecting to login page in 3 seconds...");
 
-      // Redirect to login page after 3 seconds
       setTimeout(() => {
         navigate('/login');
       }, 3000);

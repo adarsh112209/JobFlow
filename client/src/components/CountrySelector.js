@@ -45,7 +45,6 @@ const CountrySelector = ({ name, value, onChange }) => {
   const selectedOption = countries.find(option => option.value === value);
 
   const handleChange = (selectedOption) => {
-    // We need to simulate the event object that our form handler expects
     const event = {
       target: {
         name: name,

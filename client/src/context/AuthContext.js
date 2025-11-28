@@ -11,7 +11,6 @@
         if (storedToken) {
           try {
             const decoded = jwtDecode(storedToken);
-            // Check if token is expired
             if (decoded.exp * 1000 < Date.now()) {
               logout();
             } else {

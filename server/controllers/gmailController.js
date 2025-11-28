@@ -5,7 +5,6 @@ const Application = require('../models/Application');
 const { GoogleGenerativeAI } = require('@google/generative-ai');
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-// Corrected to a valid, powerful model
 const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
 
 const analyzeGmail = async (req, res) => {
@@ -45,7 +44,6 @@ const analyzeGmail = async (req, res) => {
       const parsedEmail = await simpleParser(rawEmail);
       const emailText = parsedEmail.text || '';
 
-      // Updated prompt with correct status values
       const prompt = `
         You are a powerful email classification AI working for a student job application dashboard. Your goal is to analyze email content and determine if the mail is job-related, whether the user meets the eligibility, and which column the mail should be categorized under in the Kanban-style dashboard.
 

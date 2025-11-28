@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom'; // Import Link
+import { Link } from 'react-router-dom'; 
 
 const ProfileDropdown = ({ userInfo, onLogout }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -8,7 +8,7 @@ const ProfileDropdown = ({ userInfo, onLogout }) => {
   useEffect(() => {
     const pageClickEvent = (e) => {
       if (dropdownRef.current !== null && !dropdownRef.current.contains(e.target)) {
-        setIsOpen(false); // Changed to false to close
+        setIsOpen(false); 
       }
     };
     if (isOpen) {

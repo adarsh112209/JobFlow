@@ -7,8 +7,7 @@
     import Modal from '../components/Modal';
     import ApplicationForm from '../components/ApplicationForm';
     import ConfirmationModal from '../components/ConfirmationModal';
-    import API from '../api'; // Ensure you are using the API instance
-
+    import API from '../api'; 
     const DashboardPage = () => {
       const [applications, setApplications] = useState([]);
       const [isModalOpen, setIsModalOpen] = useState(false);
@@ -23,7 +22,6 @@
         if (!userInfo) return;
         try {
           const config = { headers: { Authorization: `Bearer ${userInfo.token}` } };
-          // --- THIS URL IS NOW CORRECTED ---
           const { data } = await API.get('/api/applications', config);
           setApplications(data);
         } catch (error) {

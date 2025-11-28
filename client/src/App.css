@@ -1,13 +1,10 @@
-/* ===== FINAL CELESTIAL DARK THEME ===== */
-
-/* -- 1. Color Palette & Variables -- */
 :root {
-  --primary-color: #3B82F6; /* Celestial Blue */
-  --secondary-color: #8B5CF6; /* Regal Purple */
-  --background-color: #0D1117; /* GitHub Dark Base */
-  --surface-color: #161B22; /* Lighter Dark Gray */
-  --text-color: #E6EDF3; /* Soft Off-White */
-  --text-secondary-color: #8B949E; /* Muted Gray */
+  --primary-color: #3B82F6; 
+  --secondary-color: #8B5CF6; 
+  --background-color: #0D1117; 
+  --surface-color: #161B22; 
+  --text-color: #E6EDF3; 
+  --text-secondary-color: #8B949E; 
   --border-color: rgba(139, 148, 158, 0.2);
   --font-family: 'Inter', sans-serif;
 }
@@ -66,7 +63,7 @@ body {
 }
 .form-group input:focus, .application-form select:focus, .application-form textarea:focus { outline: none; border-color: var(--primary-color); box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3); }
 .btn {
-  display: inline-block; /* Ensures <a> tags behave like buttons */
+  display: inline-block; 
   padding: 0.8rem 1.2rem;
   border: none;
   background-image: linear-gradient(90deg, var(--secondary-color), var(--primary-color));
@@ -76,7 +73,7 @@ body {
   font-weight: 600;
   border-radius: 6px;
   cursor: pointer;
-  text-decoration: none; /* Removes underline from <a> tag */
+  text-decoration: none; 
   text-align: center;
   transition: all 0.4s ease;
 }
@@ -94,7 +91,7 @@ body {
   font-size: 1.25rem;
   font-weight: 600;
   color: var(--text-color);
-  text-decoration: none; /* Removes underline from link */
+  text-decoration: none; 
   transition: color 0.2s ease-in-out;
 }
 
@@ -104,13 +101,13 @@ body {
 .navbar-user {
   display: flex;
   align-items: center;
-  gap: 0.75rem; /* Adjusted gap */
+  gap: 0.75rem; 
   color: var(--text-secondary-color);
 }
 
 .navbar-user strong {
     color: var(--text-color);
-    font-weight: 600; /* Bolder font */
+    font-weight: 600; 
 }
 
 .user-icon {
@@ -128,11 +125,9 @@ body {
 .dashboard-content { position: relative; z-index: 2; padding-top: 80px; }
 .dashboard-header h2 { font-weight: 600; font-size: 2rem; margin: 0; }
 
-/* -- 6. Kanban Board Styling -- */
-/* --- UPDATED KANBAN STYLES FOR GRID LAYOUT --- */
 .kanban-grid-container {
   display: flex;
-  flex-direction: column; /* Stacks the rows vertically */
+  flex-direction: column;
   gap: 1.5rem;
   padding: 0 2rem 2rem 2rem;
 }
@@ -169,7 +164,7 @@ body {
 .application-form textarea { min-height: 100px; resize: vertical; }
 .btn-delete {
   background-color: transparent;
-  border: 1px solid #E53E3E; /* Red border */
+  border: 1px solid #E53E3E; 
   color: #E53E3E;
   padding: 0.5rem 1rem;
   border-radius: 6px;
@@ -180,7 +175,7 @@ body {
   transition: all 0.2s ease-in-out;
 }
 .btn-delete:hover {
-  background-color: #E53E3E; /* Red fill on hover */
+  background-color: #E53E3E; 
   color: white;
   transform: translateY(-2px);
 }
@@ -289,7 +284,7 @@ body {
   font-size: 0.75rem;
   color: var(--text-secondary-color);
   margin: 0;
-  white-space: nowrap; /* Prevents the time from wrapping */
+  white-space: nowrap; 
   margin-left: 0.5rem;
 }
 
@@ -322,7 +317,7 @@ body {
 .navbar-left {
   display: flex;
   align-items: center;
-  gap: 1.5rem; /* This creates space between the brand and the buttons */
+  gap: 1.5rem; 
 }
 
 .navbar-right {
@@ -337,25 +332,22 @@ body {
   gap: 1rem;
 }
 
-/* Make navbar buttons slightly smaller to fit better */
 .navbar-actions .btn, .navbar-actions .btn-secondary,
 .navbar-right .btn {
     padding: 0.5rem 1rem;
     font-size: 0.85rem;
-    width: auto; /* Allow buttons to size to their content */
+    width: auto; 
 }
-/* Make navbar buttons slightly smaller to fit better */
 .navbar-actions .btn, .navbar-actions .btn-secondary {
     padding: 0.5rem 1rem;
     font-size: 0.85rem;
-    width: auto; /* Allow buttons to size to their content */
+    width: auto; 
 }
 
-/* Make navbar buttons slightly smaller to fit better */
 .navbar-actions .btn, .navbar-actions .btn-secondary {
     padding: 0.5rem 1rem;
     font-size: 0.85rem;
-    width: auto; /* Allow buttons to size to their content */
+    width: auto; 
 }
 
 
@@ -383,7 +375,6 @@ body {
 
 /* -- 9. Custom Datepicker & Select Styling -- */
 
-/* Import Base Styles */
 @import 'react-datepicker/dist/react-datepicker.css';
 
 /* Custom Datepicker Input */
@@ -458,7 +449,7 @@ body {
 
 /* -- Custom Datepicker Icon -- */
 .react-datepicker__input-container {
-  position: relative; /* This is needed for the icon's positioning */
+  position: relative; 
 }
 
 .react-datepicker__calendar-icon {
@@ -475,7 +466,7 @@ body {
 }
 
 .custom-date-input svg {
-  stroke: var(--text-color); /* Changed to the main text color (white) */
+  stroke: var(--text-color); 
 }
 
 /* -- Custom Date Input Button -- */
@@ -509,7 +500,7 @@ body {
 .app-container {
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* This ensures the container takes up at least the full screen height */
+  min-height: 100vh; 
 }
 
 .content-wrap {
@@ -574,14 +565,14 @@ body {
 
 .confirmation-actions .btn,
 .confirmation-actions .btn-secondary {
-  width: 120px; /* Give buttons a fixed width */
+  width: 120px; 
 }
 
 .btn-delete-confirm {
   width: 120px;
   padding: 0.8rem 1.2rem;
   border: none;
-  background-color: #E53E3E; /* Red for confirmation */
+  background-color: #E53E3E; 
   color: white;
   font-size: 0.9rem;
   font-weight: 600;
@@ -623,7 +614,7 @@ body {
 .email-view-container {
   max-height: 70vh;
   overflow-y: auto;
-  padding-right: 1rem; /* Space for scrollbar */
+  padding-right: 1rem; 
 }
 
 /* -- Landing Page Styling -- */
@@ -686,10 +677,10 @@ body {
 
 .btn-danger {
   background-image: none;
-  background-color: #E53E3E; /* Red color */
+  background-color: #E53E3E; 
 }
 .btn-danger:hover {
-  background-color: #C53030; /* Darker red on hover */
+  background-color: #C53030;
 }
 
 /* -- Custom Phone Input Styling -- */

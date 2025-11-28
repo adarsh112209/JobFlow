@@ -1,4 +1,4 @@
-const mongoose = require('mongoose'); // <-- THIS LINE WAS MISSING
+const mongoose = require('mongoose'); 
 
 const applicationSchema = mongoose.Schema({
   user: {

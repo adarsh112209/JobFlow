@@ -6,7 +6,7 @@ import Logo from '../components/Logo';
 const ResetPasswordPage = () => {
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
-  const { resettoken } = useParams(); // Gets the token from the URL
+  const { resettoken } = useParams(); 
   const navigate = useNavigate();
 
   const submitHandler = async (e) => {

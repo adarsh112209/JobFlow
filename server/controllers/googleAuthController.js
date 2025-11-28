@@ -44,8 +44,7 @@ const handleGoogleCallback = async (req, res) => {
     const oauth2 = google.oauth2({ version: 'v2', auth: oauth2Client });
     const { data: googleUser } = await oauth2.userinfo.get();
 
-    // --- THIS IS THE UPDATED LOGIC ---
-    // Find a user by EITHER their existing googleId OR their email address
+
     const user = await User.findOneAndUpdate(
         { $or: [{ googleId: googleUser.id }, { email: googleUser.email }] },
         {
@@ -60,8 +59,7 @@ const handleGoogleCallback = async (req, res) => {
 
     const appToken = generateToken(user);
 
-    // Redirect user back to the frontend with our app's token
-    // We redirect to a dedicated callback page now
+
     res.redirect(`http://localhost:3000/google-callback?token=${appToken}`);
 
   } catch (error) {

@@ -6,11 +6,10 @@ const ProtectedRoute = ({ children }) => {
   const { userInfo } = useContext(AuthContext);
 
   if (!userInfo) {
-    // If user is not logged in, redirect to the login page
     return <Navigate to="/welcome" />;
   }
 
-  return children; // If user is logged in, show the protected component
+  return children; 
 };
 
 export default ProtectedRoute;
