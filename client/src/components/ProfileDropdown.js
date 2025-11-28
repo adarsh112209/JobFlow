@@ -19,7 +19,7 @@ const ProfileDropdown = ({ userInfo, onLogout }) => {
     }
   }, [isOpen]);
 
-  const firstName = userInfo ? userInfo.name.split(' ')[0] : '';
+  const firstName = userInfo ? userInfo.name?.split(' ')[0]  : (userInfo.name || "").split(" ");
 
   return (
     <div className="profile-dropdown" ref={dropdownRef}>
